@@ -18,7 +18,7 @@ def dat_files(prj_nm, base_url):
     if not os.path.isfile(crawled):
         write_file(crawled, '')
 
-# creating a new file in python
+# creating a new file and writing to it and also appending data and also  in python
 
 
 def write_file(path, data):
@@ -33,3 +33,15 @@ def append_file(path, data):
 def delete_file(path):
     with open(path, 'w'):
         pass
+
+def file_set(file_name):
+    res= set()
+    with open(file_name, 'rt') as f:
+        for line in f:
+            res.add(line.replace('\n',''))
+        return res
+#read through the set 
+def set_file(lin, file):
+    delete_file(file)
+    for link in sorted(lin):
+        append_file(file,link)
