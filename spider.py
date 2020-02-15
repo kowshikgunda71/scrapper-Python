@@ -39,3 +39,31 @@ class Spider:
             Spider.queue_set.remove(page_url)
             Spider.crawled_set.add(page_url)
             Spider.update_files()
+
+    def gather_links(page_url):
+        htm_string = ''
+        try:
+            response = urlopen(page_url)
+            if response.getheader('Content-Type') == 'text/html':
+                htm_bytes = response.read()
+                htm_string = htm_bytes.decode("utf-8")
+                finder = Finder(Spider.base_url, page_url)
+                finder.feed(htm_string)
+        except:
+            print('page is not cralable')
+            return set()
+        return finder.page_links()
+
+    def add_links_to_queue(links):
+        for url in links:
+            if url in Spider.queue:
+                continue
+            if url in Spider.crawled:
+                continue
+            if Spider.domain_name not in url:
+                continue
+            Spider.queue.add(url)
+
+    def update_files():
+        set_file(Spider.queue, Spider.queue_file)
+        set_file(Spider.crawled, Spider.crawled_file)
