@@ -6,8 +6,8 @@ from dom import *
 from scrp import *
 from finder import *
 
-PROJECT_NAME = 'UCO'
-HOMEPAGE = 'http://www.uco.edu'
+PROJECT_NAME = 'wee'
+HOMEPAGE = 'http://weevil.info'
 DOMAIN_NAME = get_dom(HOMEPAGE)
 QUEUE_FILE = PROJECT_NAME + '/queue.txt'
 CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'

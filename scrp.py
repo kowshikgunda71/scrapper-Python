@@ -10,9 +10,9 @@ def prj_dir(directory):
 # creating queqed files and alredy crawled ones
 
 
-def dat_files(prj_nm, base_url):
-    queued = prj_nm + '/queue.txt'
-    crawled = prj_nm + '/crawled.txt'
+def dat_files(project_name, base_url):
+    queued = project_name + '/queue.txt'
+    crawled = project_name + '/crawled.txt'
     if not os.path.isfile(queued):
         write_file(queued, base_url)
     if not os.path.isfile(crawled):
@@ -46,7 +46,7 @@ def file_set(file_name):
 # read through the set
 
 
-def set_file(lin, file):
-    delete_file(file)
-    for link in sorted(lin):
-        append_file(file, link)
+def set_to_file(links, file_name):
+    with open(file_name, "w") as f:
+        for l in sorted(links):
+            f.write(l+"\n")
